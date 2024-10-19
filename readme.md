@@ -14,13 +14,24 @@ Este programa implementa un sistema de control basado en un lector RFID que alte
 
 ## Pinout
 
-- `SS_PIN`: Pin 10, utilizado como pin de selección de esclavo para el lector RFID.
-- `RST_PIN`: Pin 9, utilizado para resetear el lector RFID.
+### MFRC522 RFID Reader
+
+- **VCC**: 3.3V
+- **GND**: GND
+- **SDA (SS)**: Pin 10, utilizado como pin de selección de esclavo.
+- **SCK**: Pin 13, para la señal de reloj del bus SPI.
+- **MOSI**: Pin 11, para la señal de datos del bus SPI.
+- **MISO**: Pin 12, para la señal de datos de entrada del bus SPI.
+- **IRQ**: No se usa en esta implementación.
+- **RST**: Pin 9, utilizado para resetear el lector RFID.
+
+### Otros componentes
+
 - `BUZZER_PIN`: Pin 8, para el buzzer.
 - `LED_ROJO_PIN`: Pin 7, para el LED rojo.
 - `LED_AMARILLO_PIN`: Pin 6, para el LED amarillo.
 - `RELE_PIN`: Pin 5, para controlar el relé.
-- `LED_AZUL_PIN`: Pin 4, para el LED azul (nuevo en la implementación).
+- `LED_AZUL_PIN`: Pin 4, para el LED azul.
 
 ## Variables
 
