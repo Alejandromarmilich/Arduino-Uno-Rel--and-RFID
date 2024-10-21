@@ -1,5 +1,8 @@
 #include <SPI.h>
 #include <MFRC522.h>
+#include <Wire.h>
+#include <LCD.h>
+#include <LiquidCrystal_I2C.h>
 
 #define SS_PIN 10
 #define RST_PIN 9
@@ -10,6 +13,7 @@
 #define LED_AZUL_PIN 4 
 
 MFRC522 rfid(SS_PIN, RST_PIN);
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7);
 
 byte llavePermitida[] = {0xAB, 0x31, 0xA6, 0x1B}; 
 
@@ -24,7 +28,12 @@ void setup() {
   Serial.begin(9600);  
   SPI.begin();  
   rfid.PCD_Init();  
-  
+
+  lcd.setBacklightPin(3, POSITIVE);
+  lcd.setBacklight(HIGH);
+  lcd.begin(16, 2);
+  lcd.clear();
+
   pinMode(BUZZER_PIN, OUTPUT);  
   pinMode(LED_ROJO_PIN, OUTPUT);
   pinMode(LED_AMARILLO_PIN, OUTPUT);
@@ -33,6 +42,8 @@ void setup() {
 
   apagarSistema();
   
+  lcd.setCursor(0, 0);
+  lcd.print("Aproxime tarjeta");
   Serial.println("Aproxime una tarjeta o llavero RFID...");
 }
 
@@ -48,14 +59,21 @@ void loop() {
     return;
 
   Serial.print("UID de la tarjeta: ");
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("UID: ");
   for (byte i = 0; i < rfid.uid.size; i++) {
     Serial.print(rfid.uid.uidByte[i] < 0x10 ? " 0" : " ");
     Serial.print(rfid.uid.uidByte[i], HEX);
+    lcd.print(rfid.uid.uidByte[i] < 0x10 ? " 0" : " ");
+    lcd.print(rfid.uid.uidByte[i], HEX);
   }
   Serial.println();
 
   if (compararLlave(rfid.uid.uidByte)) {
     Serial.println("Llave correcta detectada.");
+    lcd.setCursor(0, 1);
+    lcd.print("Llave correcta");
     tone(BUZZER_PIN, 2000);  
     delay(100);
     noTone(BUZZER_PIN);
@@ -68,6 +86,8 @@ void loop() {
     
   } else {
     Serial.println("Llave incorrecta.");
+    lcd.setCursor(0, 1);
+    lcd.print("Llave incorrecta");
     tone(BUZZER_PIN, 100);  
     delay(500);
     noTone(BUZZER_PIN);
@@ -104,6 +124,9 @@ void apagarSistema() {
   digitalWrite(RELE_PIN, LOW);          
   digitalWrite(LED_AZUL_PIN, LOW);
   Serial.println("Sistema apagado.");
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Sistema apagado");
 }
 
 void encenderSistema() {
@@ -115,4 +138,7 @@ void encenderSistema() {
   digitalWrite(LED_AZUL_PIN, HIGH);
   digitalWrite(LED_AMARILLO_PIN, LOW); 
   Serial.println("Sistema encendido.");
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Sistema encendido");
 }
