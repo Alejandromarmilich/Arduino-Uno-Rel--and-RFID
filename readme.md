@@ -92,6 +92,7 @@ Apagar el sistema: Usa la misma llave autorizada para apagar el sistema.
 Ver mensajes en la pantalla: La pantalla LCD te guiará a lo largo del proceso mostrando si una llave es correcta o incorrecta y el estado actual del sistema.
 
 ## Licencia
-Este proyecto está licenciado bajo la MIT License.
+Este proyecto está licenciado bajo GPL-3.0 license
+https://github.com/Alejandromarmilich/Arduino-Uno-Relay-and-RFID?tab=GPL-3.0-1-ov-file.
 
 Si tienes alguna pregunta o sugerencia, no dudes en abrir un issue o hacer una pull request. ¡Gracias por contribuir!
