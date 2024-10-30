@@ -1,7 +1,7 @@
 # Sistema de Control con RFID
 
 Este proyecto implementa un sistema de control de encendido y apagado basado en la tecnología **RFID** utilizando Arduino. El sistema permite verificar una llave RFID autorizada para activar o desactivar un relé que controla el encendido de un dispositivo. Además, cuenta con indicadores visuales (LEDs), un buzzer para notificaciones sonoras, y una pantalla LCD que muestra información en tiempo real sobre el estado del sistema.
-
+  
 ## Características principales
 
 - **Verificación de llaves RFID**: Detecta el UID de tarjetas o llaves RFID y compara con una lista de llaves permitidas.
@@ -60,9 +60,11 @@ El proyecto está configurado para usarse con **PlatformIO** en **VS Code**. Ase
 
 Estas se pueden agregar en el archivo `platformio.ini` de la siguiente forma:
 
-`lib_deps = 
-    rfid/MFRC522
-    fdebrabander/Arduino-LiquidCrystal-I2C`
+`
+lib_deps = 
+  rfid/MFRC522
+  fdebrabander/Arduino-LiquidCrystal-I2C
+`
 
 ## Instalación y configuración
 Clonar el repositorio
