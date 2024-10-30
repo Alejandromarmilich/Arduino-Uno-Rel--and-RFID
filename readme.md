@@ -60,11 +60,9 @@ El proyecto está configurado para usarse con **PlatformIO** en **VS Code**. Ase
 
 Estas se pueden agregar en el archivo `platformio.ini` de la siguiente forma:
 
-`
-lib_deps = 
-  rfid/MFRC522
-  fdebrabander/Arduino-LiquidCrystal-I2C
-`
+`lib_deps = 
+    rfid/MFRC522
+    fdebrabander/Arduino-LiquidCrystal-I2C`
 
 ## Instalación y configuración
 Clonar el repositorio
