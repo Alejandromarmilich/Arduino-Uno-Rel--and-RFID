@@ -3,6 +3,7 @@
 #include <Wire.h>
 #include <LCD.h>
 #include <LiquidCrystal_I2C.h>
+#include <Servo.h>
 
 #define SS_PIN 10
 #define RST_PIN 9
@@ -10,7 +11,10 @@
 #define LED_ROJO_PIN 7  
 #define LED_AMARILLO_PIN 6  
 #define RELE_PIN 5      
-#define LED_AZUL_PIN 4 
+#define LED_AZUL_PIN 4
+#define SERVO_PIN 3
+
+Servo servoMotor;
 
 MFRC522 rfid(SS_PIN, RST_PIN);
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7);
@@ -18,13 +22,17 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7);
 byte llavePermitida[] = {0xAB, 0x31, 0xA6, 0x1B}; 
 
 bool sistemaEncendido = false;
+unsigned long ultimoMovimientoServo = 0;
+const unsigned long intervaloMovimientoServo = 2000;  
 
 void apagarSistema();
 void encenderSistema();
 void parpadeoRojo();
 bool compararLlave(byte* uidLeido);
+void moverServo();
 
 void setup() {
+  servoMotor.attach(SERVO_PIN);
   Serial.begin(9600);  
   SPI.begin();  
   rfid.PCD_Init();  
@@ -48,6 +56,10 @@ void setup() {
 }
 
 void loop() {
+  if (sistemaEncendido) {
+    moverServo();  
+  }
+
   if (!sistemaEncendido) {
     parpadeoRojo();
   }
@@ -141,4 +153,14 @@ void encenderSistema() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Sistema encendido");
+}
+
+void moverServo() {
+  unsigned long tiempoActual = millis();
+
+  if (tiempoActual - ultimoMovimientoServo >= intervaloMovimientoServo) {
+    int posicionAleatoria = random(0, 180); 
+    servoMotor.write(posicionAleatoria);
+    ultimoMovimientoServo = tiempoActual;  
+  }
 }
