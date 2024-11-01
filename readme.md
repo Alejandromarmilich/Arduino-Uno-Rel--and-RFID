@@ -1,6 +1,3 @@
-# Generating a README.md file with the updated project information.
-
-content = """
 # Sistema de Control con RFID
 
 Este proyecto implementa un sistema de encendido y apagado basado en la tecnología **RFID** utilizando Arduino y un microcontrolador compatible. El sistema permite verificar una llave RFID autorizada para activar o desactivar un relé que controla el encendido de un dispositivo. Cuenta con indicadores visuales (LEDs), un buzzer para notificaciones sonoras y una pantalla LCD para mostrar información sobre el estado del sistema en tiempo real.
