@@ -23,7 +23,7 @@ byte llavePermitida[] = {0xAB, 0x31, 0xA6, 0x1B};
 
 bool sistemaEncendido = false;
 unsigned long ultimoMovimientoServo = 0;
-const unsigned long intervaloMovimientoServo = 2000;  
+const unsigned long intervaloMovimientoServo = 59000;  
 
 void apagarSistema();
 void encenderSistema();
@@ -130,6 +130,7 @@ void parpadeoRojo() {
 }
 
 void apagarSistema() {
+  lcd.setBacklight(HIGH);
   sistemaEncendido = false;
   digitalWrite(LED_ROJO_PIN, HIGH);     
   digitalWrite(LED_AMARILLO_PIN, LOW);  
@@ -139,9 +140,12 @@ void apagarSistema() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Sistema apagado");
+  delay(1000);
+  lcd.setBacklight(LOW);
 }
 
 void encenderSistema() {
+  lcd.setBacklight(HIGH);
   sistemaEncendido = true;
   digitalWrite(LED_ROJO_PIN, LOW);      
   digitalWrite(LED_AMARILLO_PIN, HIGH); 
@@ -152,7 +156,15 @@ void encenderSistema() {
   Serial.println("Sistema encendido.");
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Sistema encendido");
+  lcd.print("Sistema");
+  lcd.setCursor(0, 1);
+  lcd.print("Encendido");
+  delay(1000);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Y tu proyecto");
+  delay(500);
+  lcd.setBacklight(LOW);
 }
 
 void moverServo() {
