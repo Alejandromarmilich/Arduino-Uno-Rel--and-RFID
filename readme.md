@@ -1,14 +1,14 @@
-# Generating a README.md file with the updated project information.
+# Re-generating the README.md file with updated project information and a brief description after the execution environment reset.
 
-content = """
+content_updated = """
 # Sistema de Control con RFID
 
-Este proyecto implementa un sistema de encendido y apagado basado en la tecnología **RFID** utilizando Arduino y un microcontrolador compatible. El sistema permite verificar una llave RFID autorizada para activar o desactivar un relé que controla el encendido de un dispositivo. Cuenta con indicadores visuales (LEDs), un buzzer para notificaciones sonoras y una pantalla LCD para mostrar información sobre el estado del sistema en tiempo real.
+Este proyecto implementa un sistema de control de encendido y apagado basado en la tecnología **RFID** utilizando un microcontrolador compatible con Arduino. El sistema verifica una llave RFID autorizada para activar o desactivar un relé (no utilizado en la implementación final) que controla el encendido de un dispositivo. Incluye indicadores visuales (LEDs), un buzzer para notificaciones sonoras, y una pantalla LCD que muestra información en tiempo real sobre el estado del sistema.
 
 ## Características principales
 
 - **Verificación de llaves RFID**: Detecta el UID de tarjetas o llaves RFID y lo compara con la llave permitida.
-- **Control de relé**: Activa o desactiva el relé en función de si se detecta una llave correcta o incorrecta.
+- **Control de relé**: Aunque el relé se define en el código, no se utiliza en la implementación final.
 - **Indicadores visuales y sonoros**:
   - **LED Rojo**: Parpadea cuando el sistema está apagado.
   - **LED Amarillo**: Indica la transición de encendido/apagado.
@@ -23,7 +23,6 @@ Este proyecto implementa un sistema de encendido y apagado basado en la tecnolog
 - **Lector RFID RC522**
 - **Pantalla LCD 16x2 con módulo I2C**
 - **Buzzer**
-- **Relé**
 - **Servo motor** (Tower Pro SG90 o similar)
 - **LEDs**: Rojo, Amarillo y Azul
 - **Llaves o tarjetas RFID**
@@ -37,7 +36,6 @@ Este proyecto implementa un sistema de encendido y apagado basado en la tecnolog
 | Buzzer              | 8              |
 | LED Rojo            | 7              |
 | LED Amarillo        | 6              |
-| Relé                | 5              |
 | LED Azul            | 4              |
 | Servo               | 3              |
 | LCD I2C (SDA/SCL)   | SDA: A4, SCL: A5 (para Arduino Uno) |
